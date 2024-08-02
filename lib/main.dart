@@ -1,7 +1,4 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:trust_wallet/screen/home.dart';
 
 void main() {
@@ -12,10 +9,10 @@ void main() {
 
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(),
-      body:Center(
+      body: Center(
         child: ImageIcon(
           AssetImage("assest/logo.png"),
           size: 60.5,
@@ -26,12 +23,9 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
-AppBar appBar(){
+AppBar appBar() {
   return AppBar(
-    title: Text(
-      'Welcome to Flutter'
-    ),
+    title: Text('Welcome to Flutter'),
     centerTitle: true,
     backgroundColor: Colors.deepPurple,
   );
