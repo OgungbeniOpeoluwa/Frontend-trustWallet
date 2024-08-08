@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:trust_wallet/screen/register.dart';
+import 'package:trust_wallet/features/button.dart';
 
 class MyHome extends StatelessWidget {
   @override
@@ -17,39 +20,19 @@ class MyHome extends StatelessWidget {
             width: 20,
             height: 30,
           ),
-          ElevatedButton(
-            onPressed: () {},
-            style: buttonStyle(),
-            child: Text("Register"),
-          ),
+          button(ButtonProperty(Colors.black, 50, "Register", 300)),
           SizedBox(
             width: 20,
             height: 30,
           ),
-          ElevatedButton(
-              onPressed: () {}, style: buttonStyle(), child: Text("Login")),
+          button(ButtonProperty(Colors.black, 50, "Login", 300)),
           SizedBox(
             width: 20,
             height: 30,
           ),
-          ElevatedButton(
-            onPressed: () {},
-            style: buttonStyle(),
-            child: Text(
-              "Fund wallet",
-            ),
-          )
+          button(ButtonProperty(Colors.black, 50, "fund wallet", 300))
         ],
       ),
     );
   }
-}
-
-ButtonStyle buttonStyle(double width, double height) {
-  return ButtonStyle(fixedSize: WidgetStateProperty.all(Size(width, height)));
-}
-
-ElevatedButton button(String name, Colors colour, double height, double width) {
-  return ElevatedButton(
-      onPressed: () {}, style: buttonStyle(width, height), child: Text(name));
 }

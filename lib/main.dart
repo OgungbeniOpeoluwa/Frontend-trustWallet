@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:trust_wallet/screen/home.dart';
+import 'package:trust_wallet/screen/register.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: MyHome(),
+    home: Register(),
+    routes: {"/register": (context) => Register()},
   ));
 }
 
