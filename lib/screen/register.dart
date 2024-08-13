@@ -1,17 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:trust_wallet/features/button.dart';
 
 class Register extends StatefulWidget {
-  const Register({super.key});
+  const Register({Key? key, required this.onSubmit}) : super(key: key);
+  final ValueChanged<String> onSubmit;
   @override
-  State<Register> createState() {
-    return _RegisterForm();
-  }
+  State<Register> createState() => _RegisterForm();
 }
 
 class _RegisterForm extends State<Register> {
   final _formKey = GlobalKey<FormState>();
+  final _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  String? get getErrorText {
+    final text = _controller.value.text;
+
+    if (text.isEmpty) {
+      return "cant be empty";
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,16 +34,17 @@ class _RegisterForm extends State<Register> {
         centerTitle: true,
         title: Text("Login"),
       ),
-      body: SafeArea(child: _buildUI(context)),
+      body: SafeArea(child: _buildUI(context, _controller, _formKey)),
     );
   }
 }
 
-Widget _buildUI(BuildContext context) {
+Widget _buildUI(BuildContext context, TextEditingController controller,
+    GlobalKey<FormState> formKey) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     crossAxisAlignment: CrossAxisAlignment.center,
-    children: [_title(), _registerDetails(context)],
+    children: [_title(), _registerDetails(context, formKey, controller)],
   );
 }
 
@@ -39,18 +55,20 @@ Widget _title() {
   );
 }
 
-Widget _registerDetails(BuildContext context) {
+Widget _registerDetails(BuildContext context, GlobalKey<FormState> formKey,
+    TextEditingController controller) {
   return SizedBox(
-    // width: MediaQuery.sizeOf(context).width * 0.90,
-    // height: MediaQuery.sizeOf(context).height * 0.90,
+    width: MediaQuery.of(context).size.width * 0.90,
+    height: MediaQuery.of(context).size.height * 0.90,
     child: Form(
-        key: _formkey,
+        key: formKey,
         child: Column(
           // mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             TextFormField(
+              controller: controller,
               decoration: InputDecoration(hintText: "First Name"),
             ),
             TextFormField(
